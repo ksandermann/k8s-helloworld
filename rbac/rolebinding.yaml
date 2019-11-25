@@ -1,0 +1,14 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ns-admin-k8s-workshop-2019-11-25
+  namespace: k8s-workshop-2019-11-25
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ns-admin-k8s-workshop-2019-11-25
+subjects:
+  - kind: ServiceAccount
+    name: k8s-workshop-user
+    namespace: k8s-workshop-2019-11-25

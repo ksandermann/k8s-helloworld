@@ -1,0 +1,14 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ns-admin-k8s-workshop-2019-11-25
+  namespace: k8s-workshop-2019-11-25
+rules:
+  - apiGroups:
+      - ""
+      - '*'
+    resources:
+      - '*'
+    verbs:
+      - '*'

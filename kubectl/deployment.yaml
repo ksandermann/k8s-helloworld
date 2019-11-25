@@ -6,7 +6,7 @@ metadata:
   labels:
     app: helloworld-changeme
     stage: dev
-  namespace: helloworld-changeme
+  namespace: k8s-workshop-2019-11-25
 spec:
   replicas: 2
   selector:

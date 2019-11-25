@@ -4,7 +4,7 @@ metadata:
   labels:
     stage: dev
   name: helloworld-changeme
-  namespace: helloworld-changeme
+  namespace: k8s-workshop-2019-11-25
   annotations:
     kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-prd

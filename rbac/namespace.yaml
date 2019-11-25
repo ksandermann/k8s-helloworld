@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   labels:
     stage: dev
-  name: helloworld-changeme
+  name: k8s-workshop-2019-11-25
