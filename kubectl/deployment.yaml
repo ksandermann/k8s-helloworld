@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-changeme
+  labels:
+    app: helloworld-changeme
+    stage: dev
+  namespace: helloworld-changeme
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: helloworld-changeme
+      stage: dev
+  template:
+    metadata:
+      labels:
+        app: helloworld-changeme
+        stage: dev
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - helloworld-changeme
+                    - key: stage
+                      operator: In
+                      values:
+                        - dev
+                topologyKey: kubernetes.io/hostname
+              weight: 10
+      containers:
+        - name: helloworld-changeme
+          image: nginx:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 64Mi
+              cpu: 100m
+            limits:
+              memory: 256Mi
+              cpu: 250m
+          livenessProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            httpGet:
+              path: /
+              port: 80
+          readinessProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            httpGet:
+              path: /
+              port: 80
+          ports:
+            - containerPort: 8080
