@@ -19,7 +19,6 @@ spec:
       hostNetwork: true
       hostIPC: true
       containers:
-
       - name: debugenter
         command: ["/nsenter", "--all", "--target=1", "sh", "-c", "systemctl status systemd-timesyncd"]
         image: ksandermann/nsenter:2.34
