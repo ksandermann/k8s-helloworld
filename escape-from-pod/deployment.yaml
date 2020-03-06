@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: debugenter
+  name: debugenter
+  namespace: nsenter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: debugenter
+  template:
+    metadata:
+      labels:
+        run: debugenter
+    spec:
+      hostPID: true
+      hostNetwork: true
+      hostIPC: true
+      containers:
+
+      - name: debugenter
+        command: ["/nsenter", "--all", "--target=1", "sh", "-c", "systemctl status systemd-timesyncd"]
+        image: ksandermann/nsenter:2.34
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+        stdin: true
+        tty: true
