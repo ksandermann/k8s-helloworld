@@ -59,4 +59,4 @@ spec:
               path: /
               port: 80
           ports:
-            - containerPort: 8080
+            - containerPort: 80
